@@ -1,10 +1,12 @@
-/* Import Atkinson Hyperlegible */
+/* =========================================
+   1. FONTS & THEME VARIABLES
+   ========================================= */
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /* Default Theme: Grayscale (Dark) */
 :root {
     --bg-color: #242424;
-    --sidebar-bg: #242424; /* Changed to match --bg-color */
+    --sidebar-bg: #242424; 
     --text-color: #e0e0e0;
     --border-color: #333333;
     --link-color: #ffffff;
@@ -14,7 +16,7 @@
 /* Theme: OLED Black */
 :root[data-theme="black"] {
     --bg-color: #000000;
-    --sidebar-bg: #000000; /* Changed to match --bg-color */
+    --sidebar-bg: #000000; 
     --text-color: #cccccc;
     --border-color: #222222;
     --link-color: #ffffff;
@@ -24,14 +26,17 @@
 /* Theme: E-ink White */
 :root[data-theme="white"] {
     --bg-color: #ffffff;
-    --sidebar-bg: #ffffff; /* Changed to match --bg-color */
+    --sidebar-bg: #ffffff; 
     --text-color: #111111;
     --border-color: #dddddd;
     --link-color: #000000;
     --link-hover: #555555;
 }
 
-/* Global Styles */
+
+/* =========================================
+   2. GLOBAL STYLES & RESETS
+   ========================================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -56,36 +61,49 @@ a:hover {
     color: var(--link-hover);
 }
 
-/* Layout - Remove the border */
+
+/* =========================================
+   3. LAYOUT (SIDEBAR & MAIN CONTENT)
+   ========================================= */
 .sidebar {
-    width: 250px;
-    background-color: var(--sidebar-bg);
-    border-right: none; /* Removed the border */
-    padding: 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px; 
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
+    padding: 2rem;
+    background-color: var(--sidebar-bg);
+    z-index: 100;
 }
 
 .main-content {
+    margin-left: 220px; 
+    width: calc(100% - 220px); 
     flex: 1;
     padding: 4rem;
 }
 
-/* Logo Placeholder */
+
+/* =========================================
+   4. SIDEBAR COMPONENTS
+   ========================================= */
+/* Logo */
 .logo {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 2rem;
-    font-size: 0.8rem;
     text-align: center;
 }
 
-/* NEW: Make the image fit the circle perfectly */
+.logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
 .logo img {
     width: 100%;
     height: 100%;
@@ -93,7 +111,7 @@ a:hover {
     border-radius: 50%; 
 }
 
-/* Navigation */
+/* Navigation Menu */
 .nav-menu {
     list-style: none;
     flex: 1;
@@ -109,13 +127,12 @@ a:hover {
     padding: 0.25rem 0;
 }
 
-/* Active State for Tabs */
 .nav-link.active {
     font-weight: 700;
     font-size: 1.2rem;
 }
 
-/* Sub-navigation (Filters/Search) */
+/* Live Search & Filters */
 .sub-nav {
     margin-top: 0.5rem;
     margin-bottom: 1rem;
@@ -131,21 +148,33 @@ a:hover {
     color: var(--text-color);
     font-family: inherit;
     margin-bottom: 0.5rem;
-    border-radius: 4px;
+    border-radius: 0; 
+}
+
+.cat-filter {
+    display: none; 
 }
 
 .filter-label {
     display: block;
-    font-size: 0.85rem;
-    margin-bottom: 0.25rem;
     cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    transition: all 0.2s ease;
 }
 
-/* Theme Selectors */
+.filter-label:has(input:checked) {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+/* Theme Selector */
 .theme-selector {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
     display: flex;
     gap: 0.5rem;
-    margin-top: 2rem;
 }
 
 .theme-btn {
@@ -153,7 +182,7 @@ a:hover {
     height: 24px;
     border: 1px solid var(--border-color);
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0;
 }
 
 #theme-black { background-color: #000; }
@@ -163,7 +192,10 @@ a:hover {
     background: conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
 }
 
-/* Content Styles */
+
+/* =========================================
+   5. HOME PAGE & GENERAL TYPOGRAPHY
+   ========================================= */
 .hero-text {
     font-size: 1.2rem;
 }
@@ -172,12 +204,23 @@ a:hover {
     text-decoration: underline;
 }
 
-/* --- Grids for Projects/Photos --- */
+.disclaimer-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.6;
+    margin-top: 2rem;
+    font-style: italic;
+    max-width: 600px;
+}
+
+
+/* =========================================
+   6. GRID LAYOUTS (PROJECTS & PHOTOS)
+   ========================================= */
 .grid {
     display: grid;
-    /* auto-fill creates as many columns as will fit across the screen width */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem; /* Slightly larger gap to accommodate the text below */
+    gap: 1.5rem; 
     width: 100%;
 }
 
@@ -190,11 +233,13 @@ a:hover {
 }
 
 .tile {
-    aspect-ratio: 1;
-    background-color: var(--border-color);
-    position: relative;
-    border-radius: 8px;
+    width: 100%;
+    aspect-ratio: 1 / 1; 
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
 }
 
 .tile img {
@@ -203,7 +248,6 @@ a:hover {
     object-fit: cover;
 }
 
-/* The text below the tile (Starts invisible) */
 .tile-label {
     opacity: 0;
     text-align: center;
@@ -213,41 +257,18 @@ a:hover {
     transition: opacity 0.2s ease-in-out;
 }
 
-/* Makes the text appear when hovering over the image */
 .tile-wrapper:hover .tile-label {
     opacity: 1;
 }
 
-/* List for Writing/Reference */
-.list-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border-color);
+.tile-wrapper .tile-title {
+    display: none; 
 }
 
-/* Hide the physical checkbox */
-.cat-filter {
-    display: none;
-}
 
-/* Style the text label */
-.filter-label {
-    display: block;
-    cursor: pointer;
-    font-size: 0.9rem;
-    margin-bottom: 0.4rem;
-    transition: all 0.2s ease;
-}
-
-/* When the hidden checkbox is checked, bold and enlarge the label text */
-.filter-label:has(input:checked) {
-    font-weight: 700;
-    font-size: 1.05rem;
-}
-
-/* --- Single Item View (For nested pages like Photos/Projects) --- */
-/* --- Updates for True Window Centering --- */
+/* =========================================
+   7. SINGLE ITEM VIEWS (ARTICLES & PRODUCTS)
+   ========================================= */
 .single-view {
     display: flex;
     flex-direction: column;
@@ -255,13 +276,12 @@ a:hover {
     text-align: center;
     max-width: 800px;
     margin: 0 auto; 
-    /* This offsets the 250px sidebar so it centers to your full monitor screen */
-    transform: translateX(-125px); 
+    /* Removed the broken transform rule here so it centers properly */
 }
 
 .item-title {
     font-size: 2rem;
-    margin-top: 1.5rem; /* Switched from bottom margin to top margin */
+    margin-top: 1.5rem; 
     margin-bottom: 0.5rem;
     font-weight: 700;
 }
@@ -272,63 +292,21 @@ a:hover {
     color: var(--text-color);
 }
 
+/* Fixes the jumping image by locking aspect ratio */
 .large-photo {
     width: 100%;
-    max-height: 70vh; 
+    aspect-ratio: 1 / 1; /* Locks the frame size permanently */
     object-fit: cover; 
-    border-radius: 8px; 
     border: 1px solid var(--border-color);
+    border-radius: 0; 
 }
 
-/* --- Updates for Hover Text Below Thumbnail --- */
-.tile-wrapper {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: var(--text-color);
-    cursor: pointer;
-}
 
-.tile-label {
-    opacity: 0;
-    text-align: center;
-    margin-top: 0.75rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.tile-wrapper:hover .tile-label {
-    opacity: 1;
-}
-
-/* Ensure old tile-title (the overlay text) is hidden if you use the new wrappers */
-.tile-wrapper .tile-title {
-    display: none; 
-}
-
-/* --- Reference Page Styling --- */
-.ref-category {
-    margin-bottom: 1.5rem;
-}
-
-.ref-header {
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border-color);
-    outline: none;
-}
-
-.ref-content {
-    padding: 0.75rem 0 0.75rem 1rem;
-    line-height: 1.8;
-}
-
-/* --- Product Gallery & Single Product View --- */
+/* =========================================
+   8. PRODUCT SPECIFIC STYLES
+   ========================================= */
 .product-view {
-    text-align: left; /* Keeps product details left-aligned */
+    text-align: left; 
     align-items: stretch;
 }
 
@@ -337,17 +315,18 @@ a:hover {
     gap: 0.75rem;
     justify-content: center;
     margin-bottom: 1.5rem;
+    margin-top: 1rem;
 }
 
 .thumb {
     width: 70px;
     height: 70px;
     object-fit: cover;
-    border-radius: 6px;
     cursor: pointer;
     opacity: 0.6;
     border: 1px solid var(--border-color);
     transition: opacity 0.2s ease;
+    border-radius: 0;
 }
 
 .thumb:hover, .thumb.active {
@@ -407,16 +386,6 @@ a:hover {
     margin-bottom: 1rem;
 }
 
-/* --- Remove the Arrow on Reference Headers --- */
-.ref-header {
-    list-style: none; /* Removes arrow in Firefox/Standard */
-}
-
-.ref-header::-webkit-details-marker {
-    display: none; /* Removes arrow in Chrome/Safari */
-}
-
-/* --- Products Thumbnail Price --- */
 .product-thumb-price {
     font-weight: normal;
     font-size: 1rem;
@@ -425,48 +394,12 @@ a:hover {
     opacity: 0.8;
 }
 
-/* Reference Item layout for filtering */
-.ref-item {
-    display: block; /* Ensures they can be hidden by search script */
-}
 
-/* --- Global Sharp Edges --- */
-.search-box, 
-.theme-btn, 
-.tile, 
-.thumb, 
-.large-photo {
-    border-radius: 0 !important;
-}
-
-/* --- 404 Page Styling --- */
-.error-title {
-    font-size: 10rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 2rem;
-    color: var(--text-color);
-}
-
-.error-img {
-    width: 350px;
-    height: 350px;
-    object-fit: cover;
-    border: 1px solid var(--border-color);
-    /* No border radius here to keep it sharp as requested */
-}
-
-/* --- Logo Link Formatting --- */
-.logo a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%; /* Keep this if you want the click area to be a circle, or set to 0 if you made the logo square earlier */
-}
-
-/* --- Blog / Project Article Styling --- */
+/* =========================================
+   9. WRITING & BLOG STYLES
+   ========================================= */
 .blog-view {
-    text-align: left; /* Aligns text left for easier reading */
+    text-align: left; 
     align-items: flex-start; 
 }
 
@@ -483,14 +416,13 @@ a:hover {
 
 .blog-image {
     width: 100%;
-    max-height: 70vh;
+    aspect-ratio: 4 / 3; 
     object-fit: cover;
     margin: 2rem 0;
     border: 1px solid var(--border-color);
-    border-radius: 0 !important; /* Retaining your sharp corners rule */
+    border-radius: 0;
 }
 
-/* --- Article & Project Headers (Title + Date) --- */
 .article-header {
     display: flex;
     justify-content: space-between;
@@ -509,19 +441,18 @@ a:hover {
 .article-date {
     font-size: 0.9rem;
     color: var(--text-color);
-    opacity: 0.6; /* Makes the color slightly muted/different */
+    opacity: 0.6; 
 }
 
-/* --- Writing Page List Layout (Full Window Width) --- */
 #content-list {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Expands across the full available space */
+    width: 100%; 
 }
 
 .list-item {
     display: flex;
-    justify-content: space-between; /* Automatically pushes title left, date right */
+    justify-content: space-between;
     align-items: center;
     padding: 1.2rem 0; 
     border-bottom: 1px solid var(--border-color); 
@@ -549,25 +480,42 @@ a:hover {
     opacity: 0.7;
 }
 
-/* --- Home Page Disclaimer --- */
-.disclaimer-text {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    opacity: 0.6;
-    margin-top: 2rem;
-    font-style: italic;
-    max-width: 600px;
+
+/* =========================================
+   10. REFERENCE PAGE STYLES
+   ========================================= */
+.ref-category {
+    margin-bottom: 1.5rem;
 }
 
-/* --- Reference Item Layout & Small Thumbnails --- */
+.ref-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+    list-style: none; /* Removes arrow in Firefox/Standard */
+}
+
+.ref-header::-webkit-details-marker {
+    display: none; /* Removes arrow in Chrome/Safari */
+}
+
+.ref-content {
+    padding: 0.75rem 0 0.75rem 1rem;
+    line-height: 1.8;
+}
+
 .ref-item {
+    display: block; 
     margin-bottom: 0.75rem;
 }
 
 .ref-item-row {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem; /* Gap between link text and thumbnail */
+    gap: 0.75rem; 
 }
 
 .ref-thumb {
@@ -575,6 +523,26 @@ a:hover {
     height: 32px;
     object-fit: cover;
     border: 1px solid var(--border-color);
-    border-radius: 0 !important; /* Retaining your sharp corners rule */
+    border-radius: 0; 
     vertical-align: middle;
+}
+
+
+/* =========================================
+   11. ERROR PAGE (404)
+   ========================================= */
+.error-title {
+    font-size: 10rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.error-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    border-radius: 0;
 }
