@@ -1,0 +1,580 @@
+/* Import Atkinson Hyperlegible */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Default Theme: Grayscale (Dark) */
+:root {
+    --bg-color: #242424;
+    --sidebar-bg: #242424; /* Changed to match --bg-color */
+    --text-color: #e0e0e0;
+    --border-color: #333333;
+    --link-color: #ffffff;
+    --link-hover: #aaaaaa;
+}
+
+/* Theme: OLED Black */
+:root[data-theme="black"] {
+    --bg-color: #000000;
+    --sidebar-bg: #000000; /* Changed to match --bg-color */
+    --text-color: #cccccc;
+    --border-color: #222222;
+    --link-color: #ffffff;
+    --link-hover: #888888;
+}
+
+/* Theme: E-ink White */
+:root[data-theme="white"] {
+    --bg-color: #ffffff;
+    --sidebar-bg: #ffffff; /* Changed to match --bg-color */
+    --text-color: #111111;
+    --border-color: #dddddd;
+    --link-color: #000000;
+    --link-hover: #555555;
+}
+
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+/* Layout - Remove the border */
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    border-right: none; /* Removed the border */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.main-content {
+    flex: 1;
+    padding: 4rem;
+}
+
+/* Logo Placeholder */
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* NEW: Make the image fit the circle perfectly */
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 50%; 
+}
+
+/* Navigation */
+.nav-menu {
+    list-style: none;
+    flex: 1;
+}
+
+.nav-menu li {
+    margin-bottom: 0.5rem;
+}
+
+.nav-link {
+    font-size: 1rem;
+    display: block;
+    padding: 0.25rem 0;
+}
+
+/* Active State for Tabs */
+.nav-link.active {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* Sub-navigation (Filters/Search) */
+.sub-nav {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--border-color);
+}
+
+.search-box {
+    width: 100%;
+    padding: 0.25rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-family: inherit;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+
+.filter-label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+}
+
+/* Theme Selectors */
+.theme-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.theme-btn {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#theme-black { background-color: #000; }
+#theme-white { background-color: #fff; }
+#theme-gray { background-color: #242424; }
+#theme-random { 
+    background: conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+}
+
+/* Content Styles */
+.hero-text {
+    font-size: 1.2rem;
+}
+
+.hero-text a {
+    text-decoration: underline;
+}
+
+/* --- Grids for Projects/Photos --- */
+.grid {
+    display: grid;
+    /* auto-fill creates as many columns as will fit across the screen width */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem; /* Slightly larger gap to accommodate the text below */
+    width: 100%;
+}
+
+.tile-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.tile {
+    aspect-ratio: 1;
+    background-color: var(--border-color);
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* The text below the tile (Starts invisible) */
+.tile-label {
+    opacity: 0;
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Makes the text appear when hovering over the image */
+.tile-wrapper:hover .tile-label {
+    opacity: 1;
+}
+
+/* List for Writing/Reference */
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Hide the physical checkbox */
+.cat-filter {
+    display: none;
+}
+
+/* Style the text label */
+.filter-label {
+    display: block;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    transition: all 0.2s ease;
+}
+
+/* When the hidden checkbox is checked, bold and enlarge the label text */
+.filter-label:has(input:checked) {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+/* --- Single Item View (For nested pages like Photos/Projects) --- */
+/* --- Updates for True Window Centering --- */
+.single-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto; 
+    /* This offsets the 250px sidebar so it centers to your full monitor screen */
+    transform: translateX(-125px); 
+}
+
+.item-title {
+    font-size: 2rem;
+    margin-top: 1.5rem; /* Switched from bottom margin to top margin */
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.item-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.large-photo {
+    width: 100%;
+    max-height: 70vh; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    border: 1px solid var(--border-color);
+}
+
+/* --- Updates for Hover Text Below Thumbnail --- */
+.tile-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.tile-label {
+    opacity: 0;
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.tile-wrapper:hover .tile-label {
+    opacity: 1;
+}
+
+/* Ensure old tile-title (the overlay text) is hidden if you use the new wrappers */
+.tile-wrapper .tile-title {
+    display: none; 
+}
+
+/* --- Reference Page Styling --- */
+.ref-category {
+    margin-bottom: 1.5rem;
+}
+
+.ref-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    outline: none;
+}
+
+.ref-content {
+    padding: 0.75rem 0 0.75rem 1rem;
+    line-height: 1.8;
+}
+
+/* --- Product Gallery & Single Product View --- */
+.product-view {
+    text-align: left; /* Keeps product details left-aligned */
+    align-items: stretch;
+}
+
+.gallery-thumbs {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0.6;
+    border: 1px solid var(--border-color);
+    transition: opacity 0.2s ease;
+}
+
+.thumb:hover, .thumb.active {
+    opacity: 1;
+    border-color: var(--text-color);
+}
+
+.product-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 1rem;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.product-sku {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+}
+
+.product-description p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.product-details-block {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.product-details-block h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.ordering-notice {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.ordering-container {
+    max-width: 700px;
+    line-height: 1.7;
+}
+
+.ordering-container h1 {
+    margin-bottom: 1.5rem;
+}
+
+.ordering-container p {
+    margin-bottom: 1rem;
+}
+
+/* --- Remove the Arrow on Reference Headers --- */
+.ref-header {
+    list-style: none; /* Removes arrow in Firefox/Standard */
+}
+
+.ref-header::-webkit-details-marker {
+    display: none; /* Removes arrow in Chrome/Safari */
+}
+
+/* --- Products Thumbnail Price --- */
+.product-thumb-price {
+    font-weight: normal;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Reference Item layout for filtering */
+.ref-item {
+    display: block; /* Ensures they can be hidden by search script */
+}
+
+/* --- Global Sharp Edges --- */
+.search-box, 
+.theme-btn, 
+.tile, 
+.thumb, 
+.large-photo {
+    border-radius: 0 !important;
+}
+
+/* --- 404 Page Styling --- */
+.error-title {
+    font-size: 10rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.error-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    /* No border radius here to keep it sharp as requested */
+}
+
+/* --- Logo Link Formatting --- */
+.logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Keep this if you want the click area to be a circle, or set to 0 if you made the logo square earlier */
+}
+
+/* --- Blog / Project Article Styling --- */
+.blog-view {
+    text-align: left; /* Aligns text left for easier reading */
+    align-items: flex-start; 
+}
+
+.blog-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    width: 100%;
+}
+
+.blog-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-image {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 0 !important; /* Retaining your sharp corners rule */
+}
+
+/* --- Article & Project Headers (Title + Date) --- */
+.article-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.article-header h1 {
+    margin-bottom: 0;
+    font-size: 2rem;
+}
+
+.article-date {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.6; /* Makes the color slightly muted/different */
+}
+
+/* --- Writing Page List Layout (Full Window Width) --- */
+#content-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Expands across the full available space */
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between; /* Automatically pushes title left, date right */
+    align-items: center;
+    padding: 1.2rem 0; 
+    border-bottom: 1px solid var(--border-color); 
+    text-decoration: none;
+    color: var(--text-color);
+    transition: opacity 0.2s ease;
+    width: 100%;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item:hover {
+    opacity: 0.6;
+}
+
+.list-item span:first-child {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.list-item span:last-child {
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+/* --- Home Page Disclaimer --- */
+.disclaimer-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    opacity: 0.6;
+    margin-top: 2rem;
+    font-style: italic;
+    max-width: 600px;
+}
+
+/* --- Reference Item Layout & Small Thumbnails --- */
+.ref-item {
+    margin-bottom: 0.75rem;
+}
+
+.ref-item-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem; /* Gap between link text and thumbnail */
+}
+
+.ref-thumb {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border: 1px solid var(--border-color);
+    border-radius: 0 !important; /* Retaining your sharp corners rule */
+    vertical-align: middle;
+}

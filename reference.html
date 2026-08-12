@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Reference - Ali Fakhari</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/rattlesnake.jpeg" alt="Rattlesnake drawing">
+            </a>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="products.html" class="nav-link">Products</a></li>
+            <li><a href="writing.html" class="nav-link">Writing</a></li>
+            <li><a href="photos.html" class="nav-link">Photos</a></li>
+            
+            <li>
+                <a href="reference.html" class="nav-link active">For Reference</a>
+                <!-- Live Search & Filters -->
+                <div class="sub-nav">
+                    <input type="text" id="live-search" class="search-box" placeholder="Live Search...">
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="People"> People</label>
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Websites"> Websites</label>
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Businesses"> Businesses</label>
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Engraving"> Engraving</label>
+                </div>
+            </li>
+        </ul>
+        <div class="theme-selector">
+            <button class="theme-btn" id="theme-black"></button>
+            <button class="theme-btn" id="theme-white"></button>
+            <button class="theme-btn" id="theme-gray"></button>
+            <button class="theme-btn" id="theme-random"></button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="reference-container">
+
+            <!-- Category 1 -->
+            <details open class="ref-category">
+                <summary class="ref-header">How to Find some good People.</summary>
+                <div class="ref-content">
+                    <div class="ref-item filterable-item" data-title="Trevor Slavin" data-tags="people">
+                        <div class="ref-item-row">
+                            <a href="#" target="_blank">Trevor Slavin</a>
+                        </div>
+                    </div>
+                    <div class="ref-item filterable-item" data-title="Ethan Holleman" data-tags="people">
+                        <div class="ref-item-row">
+                            <a href="#" target="_blank">Ethan Holleman</a>
+                        </div>
+                    </div>
+                    <div class="ref-item filterable-item" data-title="Ashley Bradley" data-tags="people">
+                        <p><a href="https://ashleybradleyart.com" target="_blank">Ashley Bradley</a></p>
+                    </div>
+                    <div class="ref-item filterable-item" data-title="Stephen Packard" data-tags="people">
+                        <p><a href="https://woodsandprairie.blogspot.com" target="_blank">Stephen Packard</a></p>
+                    </div>
+                    <div class="ref-item filterable-item" data-title="shawne michaelain holloway" data-tags="people">
+                        <p><a href="https://shawnemichaelainholloway.com/" target="_blank">shawne michaelain holloway</a></p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Category 2 -->
+            <details open class="ref-category">
+                <summary class="ref-header">Helpful Websites</summary>
+                <div class="ref-content">
+                    <div class="ref-item filterable-item" data-title="QR Generator" data-tags="websites">
+                        <div class="ref-item-row">
+                            <a href="#" target="_blank">QR Generator</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Category 3 -->
+            <details open class="ref-category">
+                <summary class="ref-header">Businesses I Enjoy</summary>
+                <div class="ref-content">
+                    <div class="ref-item filterable-item" data-title="Burrito House - Chicago, IL, USA" data-tags="businesses">
+                        <div class="ref-item-row">
+                            <a href="#" target="_blank">Burrito House — Chicago, IL, USA</a>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Category 4: Engraving Inspiration (NEW) -->
+            <details open class="ref-category">
+                <summary class="ref-header">Engraving Inspiration</summary>
+                <div class="ref-content">
+                    
+                    <!-- Link with Thumbnail -->
+                    <div class="ref-item filterable-item" data-title="Tiffany & Co Teapot from 1880" data-tags="engraving">
+                        <div class="ref-item-row">
+                            <a href="https://www.metmuseum.org/art/collection/search/20124" target="_blank">Tiffany & Co Teapot from 1880</a>
+                            <!-- <img src="images/tiffanyteapot.jpeg" alt="Tiffany Teapot" class="ref-thumb"> -->
+                        </div>
+                    </div>
+
+                    <!-- Link without Thumbnail (Example for future items) -->
+                    <div class="ref-item filterable-item" data-title="Joshua Ranger" data-tags="engraving, people">
+                        <div class="ref-item-row">
+                            <a href="https://www.instagram.com/j.h.ranger_artworks/" target="_blank">Joshua Ranger</a>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

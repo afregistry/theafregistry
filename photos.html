@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos - Ali Fakhari</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/rattlesnake.jpeg" alt="Rattlesnake drawing">
+            </a>        
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="products.html" class="nav-link">Products</a></li>
+            <li><a href="writing.html" class="nav-link">Writing</a></li>
+            
+            <li>
+                <a href="photos.html" class="nav-link active">Photos</a>
+                <div class="sub-nav">
+                    <input type="text" id="live-search" class="search-box" placeholder="Live Search...">
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Nature"> Nature</label>
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Film"> Film</label>
+                </div>
+            </li>
+            
+            <li><a href="reference.html" class="nav-link">For Reference</a></li>
+        </ul>
+        <div class="theme-selector">
+            <button class="theme-btn" id="theme-black"></button>
+            <button class="theme-btn" id="theme-white"></button>
+            <button class="theme-btn" id="theme-gray"></button>
+            <button class="theme-btn" id="theme-random"></button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="grid" id="content-grid">
+            <!-- New structural wrapper for the Prairie thumbnail -->
+            <a href="photos/forest.html" class="tile-wrapper filterable-item" data-title="Forests" data-tags="nature">
+                <div class="tile">
+                    <img src="images/prairie.jpeg" alt="Prairie">
+                </div>
+                <div class="tile-label">Forests</div>
+            </a>
+
+            <!-- Example 2 using the same new structure -->
+            <a href="#" class="tile-wrapper filterable-item" data-title="City Street" data-tags="film">
+                <div class="tile">
+                    <img src="https://via.placeholder.com/400" alt="Street">
+                </div>
+                <div class="tile-label">City Street</div>
+            </a>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
