@@ -3,6 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <!-- Instant Theme Loader to Prevent Flash -->
+    <script>
+        const savedTheme = localStorage.getItem('site-theme') || 'gray';
+        const savedCustomBg = localStorage.getItem('custom-bg');
+        const savedCustomText = localStorage.getItem('custom-text');
+        const html = document.documentElement;
+
+        if (savedTheme === 'random' && savedCustomBg) {
+            html.setAttribute('data-theme', 'random');
+            html.style.setProperty('--bg-color', savedCustomBg);
+            html.style.setProperty('--sidebar-bg', savedCustomBg);
+            html.style.setProperty('--text-color', savedCustomText);
+            html.style.setProperty('--link-color', savedCustomText);
+        } else {
+            html.setAttribute('data-theme', savedTheme);
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/rattlesnake.jpeg" alt="Rattlesnake drawing">
+            </a>        
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            
+            <li>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <div class="sub-nav">
+                    <input type="text" id="live-search" class="search-box" placeholder="Live Search...">
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Metal"> Metal</label>
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Wood"> Wood</label>
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Engraving"> Engraving</label>
+                    <label class="filter-label"><input type="checkbox" class="cat-filter" value="Restoration"> Restoration</label>
+                </div>
+            </li>
+            
+            <li><a href="products.html" class="nav-link">Products</a></li>
+            <li><a href="writing.html" class="nav-link">Writing</a></li>
+            <li><a href="photos.html" class="nav-link">Photos</a></li>
+            <li><a href="reference.html" class="nav-link">For Reference</a></li>
+        </ul>
+        <div class="theme-selector">
+            <button class="theme-btn" id="theme-black"></button>
+            <button class="theme-btn" id="theme-white"></button>
+            <button class="theme-btn" id="theme-gray"></button>
+            <button class="theme-btn" id="theme-random"></button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="grid" id="content-grid">
+            
+             <!-- New Scythe Plates Project -->
+            <a href="projects/scytheplates.html" class="tile-wrapper filterable-item" data-title="Scythe Plates" data-tags="metal, restoration">
+                <div class="tile">
+                    <img src="images/scytheplatetitle.jpeg" alt="Scythe Plates">
+                </div>
+                <div class="tile-label">Scythe Plates</div>
+            </a>
+
+            <a href="#" class="tile-wrapper filterable-item" data-title="Carved Spoon" data-tags="wood, restoration">
+                <div class="tile">
+                    <img src="https://via.placeholder.com/400" alt="Spoon">
+                </div>
+                <div class="tile-label">Carved Spoon</div>
+            </a>
+            
+            <a href="#" class="tile-wrapper filterable-item" data-title="Brass Plate" data-tags="metal, engraving">
+                <div class="tile">
+                    <img src="https://via.placeholder.com/400" alt="Plate">
+                </div>
+                <div class="tile-label">Brass Plate</div>
+            </a>
+            
+            <a href="#" class="tile-wrapper filterable-item" data-title="Old Chair" data-tags="wood, restoration">
+                <div class="tile">
+                    <img src="https://via.placeholder.com/400" alt="Chair">
+                </div>
+                <div class="tile-label">Old Chair</div>
+            </a>
+            
+            <a href="#" class="tile-wrapper filterable-item" data-title="Steel Tool" data-tags="metal">
+                <div class="tile">
+                    <img src="https://via.placeholder.com/400" alt="Tool">
+                </div>
+                <div class="tile-label">Steel Tool</div>
+            </a>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Ali Fakhari</title>
     <link rel="stylesheet" href="styles.css">
 </head>
