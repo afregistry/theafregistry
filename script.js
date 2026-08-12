@@ -1,22 +1,6 @@
-// --- 1. RUN THEME LOGIC IMMEDIATELY ---
-const htmlElement = document.documentElement;
-const savedTheme = localStorage.getItem('site-theme') || 'gray';
-const savedCustomBg = localStorage.getItem('custom-bg');
-const savedCustomText = localStorage.getItem('custom-text');
-
-if (savedTheme === 'random' && savedCustomBg) {
-    htmlElement.setAttribute('data-theme', 'random');
-    htmlElement.style.setProperty('--bg-color', savedCustomBg);
-    htmlElement.style.setProperty('--sidebar-bg', savedCustomBg);
-    htmlElement.style.setProperty('--text-color', savedCustomText);
-    htmlElement.style.setProperty('--link-color', savedCustomText);
-} else {
-    htmlElement.setAttribute('data-theme', savedTheme);
-    htmlElement.style = ''; 
-}
-
-// --- 2. EVERYTHING ELSE RUNS ON LOAD ---
 document.addEventListener("DOMContentLoaded", () => {
+    // Redefining htmlElement inside the script so the buttons can find it again
+    const htmlElement = document.documentElement;
     
     // Theme Button Logic
     const themeBtns = {
@@ -72,11 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const title = (item.getAttribute('data-title') || '').toLowerCase();
             const tags = (item.getAttribute('data-tags') || '').toLowerCase();
             
-            // Check if this item is inside a reference category, and grab that category's title
             const parentRefCategory = item.closest('.ref-category');
             const parentCategoryTitle = parentRefCategory ? parentRefCategory.querySelector('.ref-header').textContent.toLowerCase() : '';
 
-            // Match if the query is in the item's title, the item's tags, OR the parent category's header
             const matchesSearch = title.includes(query) || tags.includes(query) || parentCategoryTitle.includes(query);
             const matchesCategory = activeCategories.length === 0 || activeCategories.some(cat => tags.includes(cat));
 
@@ -88,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
         refCategories.forEach(category => {
             const itemsInCategory = Array.from(category.querySelectorAll('.filterable-item'));
             if (itemsInCategory.length > 0) {
-                // Check if at least one item inside this category is visible
                 const hasVisibleItems = itemsInCategory.some(item => item.style.display !== 'none');
                 category.style.display = hasVisibleItems ? '' : 'none';
             }
