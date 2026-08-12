@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Ali Fakhari</title>
+    <title>Products</title>
+    <!-- Instant Theme Loader to Prevent Flash -->
+    <script>
+        const savedTheme = localStorage.getItem('site-theme') || 'gray';
+        const savedCustomBg = localStorage.getItem('custom-bg');
+        const savedCustomText = localStorage.getItem('custom-text');
+        const html = document.documentElement;
+
+        if (savedTheme === 'random' && savedCustomBg) {
+            html.setAttribute('data-theme', 'random');
+            html.style.setProperty('--bg-color', savedCustomBg);
+            html.style.setProperty('--sidebar-bg', savedCustomBg);
+            html.style.setProperty('--text-color', savedCustomText);
+            html.style.setProperty('--link-color', savedCustomText);
+        } else {
+            html.setAttribute('data-theme', savedTheme);
+        }
+    </script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
