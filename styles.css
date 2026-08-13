@@ -83,6 +83,7 @@ a:hover {
     width: calc(100% - 220px); 
     flex: 1;
     padding: 4rem;
+    /* Removed the global flex-centering here so standard pages stay left-aligned */
 }
 
 
@@ -299,6 +300,22 @@ a:hover {
     object-fit: cover; 
     border: 1px solid var(--border-color);
     border-radius: 0; 
+    
+    /* NEW: Tells the image to shrink back immediately when the mouse leaves */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* NEW: The hover effect */
+.large-photo:hover {
+    transform: scale(1.25); /* Makes the image 15% larger */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Adds a shadow so it pops off the page */
+    z-index: 10; /* Ensures the zoomed image overlaps the surrounding text/thumbnails */
+    
+    /* Waits exactly 1 second (1s) before starting the zoom */
+    transition: transform 0.3s ease 0.75s, box-shadow 0.3s ease 1s;
+    cursor: zoom-in;
 }
 
 
@@ -307,7 +324,9 @@ a:hover {
    ========================================= */
 .product-view {
     text-align: left; 
-    align-items: stretch;
+    align-items: flex-start;
+    max-width: 1500px; /* Unlocks the 800px limit so it fills wide screens */
+    margin: 0; 
 }
 
 .gallery-thumbs {
@@ -545,4 +564,203 @@ a:hover {
     object-fit: cover;
     border: 1px solid var(--border-color);
     border-radius: 0;
+}
+
+/* =========================================
+   12. LINK STYLES
+   ========================================= */
+/* Underline all links globally */
+a {
+    text-decoration: underline;
+}
+
+/* Remove underlines from UI elements so it remains clean and elegant */
+.nav-link, 
+.tile-wrapper, 
+.list-item, 
+.ref-header, 
+.logo a,
+.thumb,
+.nav-arrow {
+    text-decoration: none;
+}
+
+/* Add underline back on hover for navigation if desired */
+.nav-link:hover, .list-item:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   13. SUBPAGE NAVIGATION ARROWS (DESKTOP)
+   ========================================= */
+/* Moved this ABOVE the media queries so mobile can properly override it */
+.page-navigation {
+    position: absolute;
+    bottom: 4.2rem;
+    left: 2rem;
+    display: flex;
+    justify-content: space-between; 
+    width: 120px; 
+}
+
+.theme-selector {
+    position: absolute;
+    bottom: 2rem; 
+    left: 2rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-arrow.right-only {
+    margin-left: auto;
+}
+
+.nav-arrow {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: opacity 0.2s;
+    font-family: monospace; 
+}
+
+.nav-arrow:hover {
+    opacity: 0.5;
+}
+
+/* =========================================
+   14. DYNAMIC PRODUCT LAYOUT (SIDE-BY-SIDE)
+   ========================================= */
+.product-layout {
+    display: flex;
+    gap: 4rem; 
+    width: 100%;
+    max-width: 1000px; 
+    margin: 0 auto; /* THIS specifically centers the product page relative to the screen */
+    font-size: 1.1rem; 
+}
+
+.product-gallery-section {
+    flex: 0 1 450px; 
+    width: 100%;
+}
+
+.product-info-section {
+    flex: 1; 
+    min-width: 300px;
+    text-align: left;
+}
+
+/* =========================================
+   15. MEDIUM SCREENS (HALF-WAY MODE)
+   ========================================= */
+@media (max-width: 1100px) and (min-width: 769px) {
+    .product-layout {
+        flex-direction: column;
+        align-items: center; 
+        max-width: 700px; 
+        margin: 0 auto; 
+        gap: 2rem;
+    }
+    
+    .product-gallery-section,
+    .product-info-section {
+        width: 100%;
+        flex: none; 
+    }
+}
+
+/* =========================================
+   16. MOBILE RESPONSIVENESS (PHONES/TABLETS)
+   ========================================= */
+/* This MUST be the last section in your CSS file */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        position: relative;
+        min-height: 100vh;
+        padding-bottom: 8rem; 
+    }
+
+    .sidebar {
+        position: static; 
+        width: 100%;
+        height: auto;
+        padding: 1.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        border-bottom: none; 
+    }
+
+    .logo {
+        width: 65px; 
+        height: 65px;
+        margin-bottom: 0;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem 1.25rem;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar .search-container,
+    .sidebar .category-list,
+    .sidebar input[type="text"] {
+        display: none !important;
+    }
+
+    /* Properly stacks and centers the arrows directly above the theme boxes */
+    .page-navigation {
+        position: absolute;
+        bottom: 4rem; 
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between; 
+        width: 140px; /* Spaced out to perfectly frame the theme boxes below it */
+        margin: 0;
+    }
+
+    /* Properly centers the theme boxes at the absolute bottom */
+    .theme-selector {
+        position: absolute;
+        bottom: 1.5rem; 
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        width: max-content;
+        margin: 0;
+    }
+
+    .main-content {
+        margin-left: 0; 
+        width: 100%;
+        padding: 1.5rem; 
+    }
+
+    .product-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        margin: 0 auto;
+    }
+    
+    .product-gallery-section,
+    .product-info-section {
+        width: 100%;
+        flex: none;
+    }
+
+    .article-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
 }
