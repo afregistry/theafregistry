@@ -46,6 +46,114 @@
             <button class="theme-btn" id="theme-random"></button>
         </div>
         <div class="page-navigation">
+            <!-- <a href="previous_file.html" class="nav-arrow">&larr;</a> -->
+            <a href="forgednails.html" class="nav-arrow right-only">&rarr;</a>
+            <!-- For newest item with right arrow only <a href="..." class="nav-arrow right-only">&rarr;</a>-->
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="single-view product-view">
+            <div class="product-layout">
+                
+                <!-- Left Side: Photos -->
+                <div class="product-gallery-section">
+                    <img id="main-gallery-img" src="../images/scytheplatetitle.jpeg" alt="Scythe Plate" class="large-photo">
+                    
+                    <div class="gallery-thumbs">
+                        <img src="../images/scytheplatetitle.jpeg" alt="Title view" class="thumb active" onclick="switchImage(this)">
+                        <img src="../images/scytheplateinhand.jpeg" alt="In hand view" class="thumb" onclick="switchImage(this)">
+                        <img src="../images/scytheplateassembled.jpeg" alt="Assembled view" class="thumb" onclick="switchImage(this)">
+                    </div>
+                </div>
+
+                <!-- Right Side: Text & Info -->
+                <div class="product-info-section">
+                    <div class="product-header-row">
+                        <h1 class="item-title" style="margin-top: 0;">Scythe Plate</h1>
+                        <span class="product-price">$20.00</span>
+                    </div>
+
+                    <div class="product-sku">Item No. S1</div>
+
+                    <div class="product-description">
+                        <p>A plate made to go in between a scythe blade and snath, protecting the snath.</p>
+                        <p>This still requires the purchase of a scythe clamp.</p>
+                        <p>Hardware included with purchase.</p>
+                    </div>
+
+                    <div class="product-details-block">
+                        <h3>Product Details</h3>
+                        <p>Made of 1/8 inch mild steel.</p>
+                        <p>Uses M6 nuts and bolts.</p>
+                    </div>
+
+                    <div class="ordering-notice">
+                        <p>Email to purchase. <a href="ordering.html">Purchase instructions are linked here.</a></p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+    <script>
+        function switchImage(selectedThumb) {
+            document.getElementById('main-gallery-img').src = selectedThumb.src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            selectedThumb.classList.add('active');
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scythe Plate</title>
+    <!-- Instant Theme Loader to Prevent Flash -->
+    <script>
+        const savedTheme = localStorage.getItem('site-theme') || 'gray';
+        const savedCustomBg = localStorage.getItem('custom-bg');
+        const savedCustomText = localStorage.getItem('custom-text');
+        const html = document.documentElement;
+
+        if (savedTheme === 'random' && savedCustomBg) {
+            html.setAttribute('data-theme', 'random');
+            html.style.setProperty('--bg-color', savedCustomBg);
+            html.style.setProperty('--sidebar-bg', savedCustomBg);
+            html.style.setProperty('--text-color', savedCustomText);
+            html.style.setProperty('--link-color', savedCustomText);
+        } else {
+            html.setAttribute('data-theme', savedTheme);
+        }
+    </script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="../index.html">
+               <img src="../images/rattlesnake.jpeg" alt="Rattlesnake drawing">
+            </a>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../about.html" class="nav-link">About</a></li>
+            <li><a href="../projects.html" class="nav-link">Projects</a></li>
+            <li><a href="../products.html" class="nav-link active">Products</a></li>
+            <li><a href="../writing.html" class="nav-link">Writing</a></li>
+            <li><a href="../photos.html" class="nav-link">Photos</a></li>
+            <li><a href="../reference.html" class="nav-link">For Reference</a></li>
+        </ul>
+        <div class="theme-selector">
+            <button class="theme-btn" id="theme-black"></button>
+            <button class="theme-btn" id="theme-white"></button>
+            <button class="theme-btn" id="theme-gray"></button>
+            <button class="theme-btn" id="theme-random"></button>
+        </div>
+        <div class="page-navigation">
             <a href="previous_file.html" class="nav-arrow">&larr;</a>
             <a href="forgednails.html" class="nav-arrow">&rarr;</a>
         </div>
