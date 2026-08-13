@@ -78,12 +78,34 @@ a:hover {
     z-index: 100;
 }
 
+/* 1. Default Layout (Restores Home, About, Ref) */
 .main-content {
     margin-left: 220px; 
     width: calc(100% - 220px); 
     flex: 1;
     padding: 4rem;
-    /* Removed the global flex-centering here so standard pages stay left-aligned */
+}
+
+/* 2. Sub-Page True Centering with Flexible Right Side */
+@media (min-width: 769px) {
+    .main-content:has(.single-view),
+    .main-content:has(.blog-view),
+    .main-content:has(.product-layout) {
+        margin-left: 0;
+        width: 100%;
+        padding: 4rem 0; 
+        display: grid;
+        
+        /* UPDATED GRID: The right column can now shrink to 0 to provide extra space */
+        grid-template-columns: minmax(260px, 1fr) minmax(0, 1200px) minmax(0, 1fr);
+    }
+
+    .main-content:has(.single-view) > *,
+    .main-content:has(.blog-view) > *,
+    .main-content:has(.product-layout) > * {
+        grid-column: 2; 
+        width: 100%;
+    }
 }
 
 
@@ -572,6 +594,8 @@ a:hover {
 /* Underline all links globally */
 a {
     text-decoration: underline;
+    text-underline-offset: 5px; /* Lowers the line slightly below descenders */
+    text-decoration-thickness: 1px; /* Keeps the line crisp */
 }
 
 /* Remove underlines from UI elements so it remains clean and elegant */
@@ -585,10 +609,10 @@ a {
     text-decoration: none;
 }
 
-/* Add underline back on hover for navigation if desired */
+/* Add underline back on hover for navigation if desired 
 .nav-link:hover, .list-item:hover {
     text-decoration: underline;
-}
+} */
 
 /* =========================================
    13. SUBPAGE NAVIGATION ARROWS (DESKTOP)
@@ -631,10 +655,11 @@ a {
    ========================================= */
 .product-layout {
     display: flex;
-    gap: 4rem; 
+    flex-wrap: wrap; /* NEW: Allows the layout to naturally stack instead of squishing */
+    gap: 3rem; /* Tightened from 4rem for a better visual flow */
     width: 100%;
-    max-width: 1000px; 
-    margin: 0 auto; /* THIS specifically centers the product page relative to the screen */
+    max-width: 1200px; /* Increased from 1000px so it can stretch further right */
+    margin: 0 auto; 
     font-size: 1.1rem; 
 }
 
@@ -644,32 +669,13 @@ a {
 }
 
 .product-info-section {
-    flex: 1; 
-    min-width: 300px;
+    flex: 1; /* NEW: Tells the text to stretch and fill all available empty space */
+    min-width: 300px; /* NEW: The breaking point where the text decides to wrap underneath */
     text-align: left;
 }
 
 /* =========================================
-   15. MEDIUM SCREENS (HALF-WAY MODE)
-   ========================================= */
-@media (max-width: 1100px) and (min-width: 769px) {
-    .product-layout {
-        flex-direction: column;
-        align-items: center; 
-        max-width: 700px; 
-        margin: 0 auto; 
-        gap: 2rem;
-    }
-    
-    .product-gallery-section,
-    .product-info-section {
-        width: 100%;
-        flex: none; 
-    }
-}
-
-/* =========================================
-   16. MOBILE RESPONSIVENESS (PHONES/TABLETS)
+   16 MOBILE RESPONSIVENESS (PHONES/TABLETS)
    ========================================= */
 /* This MUST be the last section in your CSS file */
 @media (max-width: 768px) {
