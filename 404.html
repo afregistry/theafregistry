@@ -1,4 +1,3 @@
-<!-- Github pages automatically looks for a file named 404.html when a user tries to visit a link that doesn't exist, so this works. May not work when using a different hosting -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +21,15 @@
             html.setAttribute('data-theme', savedTheme);
         }
     </script>
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Safely defaults to local paths for testing on your hard drive -->
+    <link id="dynamic-css" rel="stylesheet" href="styles.css">
 </head>
 <body>
     <aside class="sidebar">
         <div class="logo">
-            <a href="index.html">
-                <img src="images/rattlesnake.jpeg" alt="Rattlesnake drawing">
+            <a id="dynamic-home" href="index.html">
+                <img id="dynamic-logo" src="images/rattlesnake.jpeg" alt="Rattlesnake drawing">
             </a>
         </div>
         <ul class="nav-menu">
@@ -49,14 +50,30 @@
     </aside>
 
     <main class="main-content">
-        <!-- Reusing the single-view layout center-offset trick so it perfectly aligns to your screen -->
         <div class="single-view">
             <h1 class="error-title">404</h1>
-            <!-- Utilizing the sharp-corner layout for the larger image -->
-            <img src="images/rattlesnake.jpeg" alt="Rattlesnake drawing" class="error-img">
+            <img id="dynamic-error" src="images/rattlesnake.jpeg" alt="Rattlesnake drawing" class="error-img">
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <script id="dynamic-js" src="script.js"></script>
+
+    <!-- THE ENVIRONMENT FIX: Runs instantly before the page paints -->
+    <script>
+        /* If loaded on a live server (GitHub Pages) instead of your local drive, 
+           this rewrites assets to pull from the root so they work in any subfolder! */
+        if (window.location.protocol !== 'file:') {
+            document.getElementById('dynamic-css').href = '/styles.css';
+            document.getElementById('dynamic-js').src = '/script.js';
+            document.getElementById('dynamic-logo').src = '/images/rattlesnake.jpeg';
+            document.getElementById('dynamic-error').src = '/images/rattlesnake.jpeg';
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const page = link.getAttribute('href');
+                link.setAttribute('href', '/' + page);
+            });
+            document.getElementById('dynamic-home').setAttribute('href', '/index.html');
+        }
+    </script>
 </body>
 </html>
