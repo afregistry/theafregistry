@@ -61,6 +61,25 @@ a:hover {
     color: var(--link-hover);
 }
 
+/* =========================================
+   2.1 TEST RESPONSIVE FLUID TYPOGRAPHY
+   ========================================= */
+
+/* Applies fluid scaling to writing/blog content, single views, and product text */
+.blog-content,
+.item-description,
+.product-layout {
+    /* 
+      1. Minimum: 1.1rem (prevents it from getting too small)
+      2. Fluid preferred: 1rem + 0.3vw (scales up slowly as the screen gets wider)
+      3. Maximum: 1.35rem (stops scaling on ultra-wide / 4K displays)
+    */
+    font-size: clamp(1.1rem, 1rem + 0.3vw, 1.35rem);
+    
+    /* Slightly increase line-height proportionally for larger screens */
+    line-height: clamp(1.6, 1.5 + 0.2vw, 1.9); 
+}
+
 
 /* =========================================
    3. LAYOUT (SIDEBAR & MAIN CONTENT)
@@ -88,16 +107,23 @@ a:hover {
 
 /* 2. Sub-Page True Centering with Flexible Right Side */
 @media (min-width: 769px) {
+    /* Keeps Writing and Single Views tight and perfectly centered */
     .main-content:has(.single-view),
-    .main-content:has(.blog-view),
+    .main-content:has(.blog-view) {
+        margin-left: 0;
+        width: 100%;
+        padding: 4rem 0; 
+        display: grid;
+        grid-template-columns: minmax(260px, 1fr) minmax(0, 80ch) minmax(2rem, 1fr);
+    }
+
+    /* Gives Products a wider center column (1000px) so they have room to sit side-by-side */
     .main-content:has(.product-layout) {
         margin-left: 0;
         width: 100%;
         padding: 4rem 0; 
         display: grid;
-        
-        /* UPDATED GRID: The right column can now shrink to 0 to provide extra space */
-        grid-template-columns: minmax(260px, 1fr) minmax(0, 1200px) minmax(0, 1fr);
+        grid-template-columns: minmax(260px, 1fr) minmax(0, 1000px) minmax(2rem, 1fr);
     }
 
     .main-content:has(.single-view) > *,
@@ -227,6 +253,10 @@ a:hover {
     text-decoration: underline;
 }
 
+.secondary-content {
+    margin-top: 1.5rem; /* Adds space above equivalent to a standard line/paragraph break */
+}
+
 .disclaimer-text {
     font-size: 0.85rem;
     line-height: 1.5;
@@ -333,7 +363,7 @@ a:hover {
 .large-photo:hover {
     transform: scale(1.25); /* Makes the image 15% larger */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Adds a shadow so it pops off the page */
-    z-index: 10; /* Ensures the zoomed image overlaps the surrounding text/thumbnails */
+    z-index: 150; /* Ensures the zoomed image overlaps the surrounding text/thumbnails */
     
     /* Waits exactly 1 second (1s) before starting the zoom */
     transition: transform 0.3s ease 0.75s, box-shadow 0.3s ease 1s;
@@ -651,26 +681,27 @@ a {
 }
 
 /* =========================================
-   14. DYNAMIC PRODUCT LAYOUT (SIDE-BY-SIDE)
+   14. DYNAMIC PRODUCT LAYOUT (RESPONSIVE WRAP)
    ========================================= */
 .product-layout {
     display: flex;
-    flex-wrap: wrap; /* NEW: Allows the layout to naturally stack instead of squishing */
-    gap: 3rem; /* Tightened from 4rem for a better visual flow */
+    flex-wrap: wrap; /* Allows side-by-side on landscape, stacks on vertical monitors */
+    justify-content: center; /* Keeps the entire block centered */
+    gap: 3.5rem; /* Provides clean breathing room between photo and text */
     width: 100%;
-    max-width: 1200px; /* Increased from 1000px so it can stretch further right */
+    max-width: 1000px; /* Keeps the text from drifting too far away from the image */
     margin: 0 auto; 
     font-size: 1.1rem; 
 }
 
 .product-gallery-section {
-    flex: 0 1 450px; 
+    flex: 1 1 400px; /* Adjusted to 400px so it perfectly fits side-by-side with the 350px text */
+    max-width: 550px; /* Lets the photo be large, but not screen-dominating */
     width: 100%;
 }
 
 .product-info-section {
-    flex: 1; /* NEW: Tells the text to stretch and fill all available empty space */
-    min-width: 300px; /* NEW: The breaking point where the text decides to wrap underneath */
+    flex: 1 1 350px; /* Triggers the vertical stack if the screen is narrower than ~900px */
     text-align: left;
 }
 
@@ -690,7 +721,7 @@ a {
         position: static; 
         width: 100%;
         height: auto;
-        padding: 1.5rem 1rem;
+        padding:1.5rem 2rem 0.25rem;
         display: flex;
         flex-direction: column;
         align-items: center;
