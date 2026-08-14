@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wooden Utensils</title>
+    <!-- the meta description. Technically need this in all folders. recommended standard limit of 155 characters -->
+    <meta name="description" content="All things I know about wooden utensils.">
+    <link rel="icon" type="image/jpeg" href="images/rattlesnake.jpeg">
+    <!-- <link rel="icon" type="image/jpeg" href="../images/rattlesnake.jpeg"> for subfolders -->
+    
+    <!-- Favicon added here -->
+    <link rel="icon" type="image/jpeg" href="../images/rattlesnake.jpeg">
+    
+    <!-- Instant Theme Loader to Prevent Flash -->
+    <script>
+        const savedTheme = localStorage.getItem('site-theme') || 'gray';
+        const savedCustomBg = localStorage.getItem('custom-bg');
+        const savedCustomText = localStorage.getItem('custom-text');
+        const html = document.documentElement;
+
+        if (savedTheme === 'random' && savedCustomBg) {
+            html.setAttribute('data-theme', 'random');
+            html.style.setProperty('--bg-color', savedCustomBg);
+            html.style.setProperty('--sidebar-bg', savedCustomBg);
+            html.style.setProperty('--text-color', savedCustomText);
+            html.style.setProperty('--link-color', savedCustomText);
+        } else {
+            html.setAttribute('data-theme', savedTheme);
+        }
+    </script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../images/rattlesnake.jpeg" alt="Rattlesnake drawing">
+            </a>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../about.html" class="nav-link">About</a></li>
+            <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+            <li><a href="../products.html" class="nav-link">Products</a></li>
+            <li><a href="../writing.html" class="nav-link">Writing</a></li>
+            <li><a href="../photos.html" class="nav-link">Photos</a></li>
+            <li><a href="../reference.html" class="nav-link">For Reference</a></li>
+        </ul>
+        <div class="theme-selector">
+            <button class="theme-btn" id="theme-black" title="OLED Black"></button>
+            <button class="theme-btn" id="theme-white" title="E-Ink White"></button>
+            <button class="theme-btn" id="theme-gray" title="Grayscale Default"></button>
+            <button class="theme-btn" id="theme-random" title="Random Color"></button>
+        </div>
+        <div class="page-navigation">
+            <a href="scytheplates.html" class="nav-arrow right-only">&rarr;</a>
+            <!-- <a href="previous_file.html" class="nav-arrow">&larr;</a>
+            <a href="next_file.html" class="nav-arrow">&rarr;</a> -->
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="single-view blog-view">
+            
+            <div class="article-header">
+                <h1 class="item-title">Wooden Utensils</h1>
+                <span class="article-date">08/14/2026</span>
+            </div>
+            
+            <!-- Added the clearfix class here so the container holds the floats properly -->
+            <div class="blog-content clearfix">
+                
+                <p>A wooden spoon is a timeless piece and need of people from many years.</p>
+                
+                <h2>Methods</h2>
+                <figure class="wiki-figure float-right">
+                    <img src="../images/ladleinprogress.jpeg" alt="Ladle in progress">
+                </figure>
+                <p>I mainly carved this spoon splitting it with a custom blacksmithed froe to split, a small <a href="https://whiskeyrivertrading.com/blogs/around-the-shop/norlund-axe-history-collector-guide" target="_blank">Norlund</a>, and then mainly a rotary tool.</p>
+
+                <h2>Purpose</h2>
+                <figure class="wiki-figure float-left">
+                    <img src="../images/woodenutensilsinkitchen.jpeg" alt="Spoons and spatulas in the kitchen">
+                    <figcaption class="wiki-caption">Spoons and spatulas in the kitchen.</figcaption>
+                </figure>
+                <p>I made these to gift some of the loved people I have in my life. They were generally happy.</p>
+
+                <h2>Materials</h2>
+                <figure class="wiki-figure float-right">
+                    <img src="../images/swampwhitespoons.jpeg" alt="Swamp white oak spoons">
+                    <figcaption class="wiki-caption">These spoons are made of swamp white oak, a very hard wood to split and a bit grainy.</figcaption>
+                </figure>
+                <p>Different woods affect the spoon making process and result greatly. Materials tend towards hard woods.</p>
+
+                <h2>Inspiration</h2>
+                <figure class="wiki-figure float-right">
+                    <img src="../images/davidspoons.jpeg" alt="David's spoons">
+                    <figcaption class="wiki-caption">Some recent spoons David has shown to me.</figcaption>
+                </figure>
+                <p>My inspiration for spoon carving is completely and totally my dear friend David Montgomery. He makes wonderful spoons and has learned lots of lessons that he shares with me. I am regularly giving him wood.</p>
+
+                <h2>Different Finishes</h2>
+                <p>To sand or to finish with the blade?</p>
+
+                <h2>Future</h2>
+                <p>I hope to carve spoons in a more traditional way, with froe, hatchet, sloyd, and curved knife.</p>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>
