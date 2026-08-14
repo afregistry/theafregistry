@@ -88,3 +88,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// potential left write arrow keys for subpage navigations using the subpage arrows. 
+// Left/Right arrow keys for subpage navigation
+document.addEventListener('keydown', (e) => {
+    // Don't trigger if the user is typing in the search box
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+    if (e.key === 'ArrowLeft') {
+        // Finds the arrow that is NOT the right-only arrow
+        const prevLink = document.querySelector('.nav-arrow:not(.right-only)');
+        if (prevLink && prevLink.href) {
+            window.location.href = prevLink.href; // Forces navigation locally
+        }
+    } else if (e.key === 'ArrowRight') {
+        // Finds the right-only arrow, or defaults to the second arrow if two exist
+        const nextLink = document.querySelector('.nav-arrow.right-only') || document.querySelectorAll('.nav-arrow')[1];
+        if (nextLink && nextLink.href) {
+            window.location.href = nextLink.href; // Forces navigation locally
+        }
+    }
+});
