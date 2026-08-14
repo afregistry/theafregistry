@@ -572,7 +572,7 @@ a:hover {
 /* Wikipedia-Style Headings */
 .blog-content h2 {
     /* Consider not using the line below */
-    /* clear: both;  */
+    clear: left;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.3rem;
     margin-top: 2.5rem;
