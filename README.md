@@ -2,7 +2,8 @@
 First real push of my website 1.0
 I believe it is done in terms of formatting, but far off from actual content being updated. 
 
-I may change the license to https://choosealicense.com/licenses/lgpl-3.0/
+I may change the license to https://choosealicense.com/licenses/lgpl-3.0/ for the website
+And possibly CC BY-NC-SA 4.0 for the content
 
 My primary website inspirations were:
 https://www.jordangonen.com/
