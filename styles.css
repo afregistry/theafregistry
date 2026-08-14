@@ -241,6 +241,24 @@ a:hover {
     background: conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
 }
 
+/* =========================================
+   RAINBOW THEME CUSTOM CURSOR
+   ========================================= */
+[data-theme="random"],
+[data-theme="random"] p,
+[data-theme="random"] h1,
+[data-theme="random"] h2 {
+    /* Points to your image, with 'auto' as a safety fallback */
+    cursor: crosshair;
+    /* cursor: url('images/rainbow-cursor.png'), auto;  */
+}
+
+/* Optional: A different custom cursor when hovering over links and buttons */
+/* [data-theme="random"] a,
+[data-theme="random"] button {
+    cursor: url('images/rainbow-pointer.png'), pointer;
+} */
+
 
 /* =========================================
    5. HOME PAGE & GENERAL TYPOGRAPHY
@@ -551,6 +569,74 @@ a:hover {
     opacity: 0.7;
 }
 
+/* Wikipedia-Style Headings */
+.blog-content h2 {
+    /* Consider not using the line below */
+    /* clear: both;  */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Wikipedia-Style Floating Figures */
+.wiki-figure {
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    max-width: 300px;
+    background-color: var(--bg-color); /* Ensures the background stays solid when zoomed */
+    margin-bottom: 1rem;
+    
+    /* ADDED FOR HOVER EFFECT */
+    position: relative;
+    z-index: 1;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ADD THIS NEW BLOCK FOR THE ZOOM */
+.wiki-figure:hover {
+    transform: scale(1.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Adds a heavy drop shadow */
+    z-index: 150; /* Forces it to the front so it overlaps surrounding text */
+    
+    /* Waits exactly 0.75s to start growing, 1s for the shadow */
+    transition: transform 0.3s ease 0.75s, box-shadow 0.3s ease 1s;
+    cursor: zoom-in;
+}
+
+.wiki-figure.float-right {
+    float: right;
+    margin-left: 1.5rem;
+}
+
+.wiki-figure.float-left {
+    float: left;
+    margin-right: 1.5rem;
+}
+
+.wiki-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border-color);
+}
+
+.wiki-caption {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    padding: 0.5rem 0.25rem 0.25rem;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+/* Clearfix to ensure the container wraps around floating images */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 
 /* =========================================
    10. REFERENCE PAGE STYLES
@@ -799,5 +885,21 @@ a {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+
+    /* Add inside the mobile media query! */
+    .wiki-figure.float-right,
+    .wiki-figure.float-left {
+        float: none;
+        margin: 1.5rem auto;
+        max-width: 100%; /* Allows the image to span the mobile screen */
+    }
+
+    /* Disable all hover zoom effects on mobile */
+    .large-photo:hover,
+    .wiki-figure:hover{
+        transform: none;
+        box-shadow: none;
+        z-index: auto;
     }
 }
